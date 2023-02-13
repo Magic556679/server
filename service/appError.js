@@ -1,8 +1,8 @@
-const handleError = (httpStatus,errMessage,next)=>{
+const appError = (httpStatus,errMessage,next)=>{
   const error = new Error(errMessage);
   error.statusCode = httpStatus;
   error.isOperational = true;
   next(error);
 }
 
-module.exports = handleError;
+module.exports = appError;

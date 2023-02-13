@@ -1,7 +1,7 @@
 const Posts = require('../models/postsModel');
 const User = require('../models/usersModel');
-const handleError = require("../service/handleError");
-const handleSuccess = require("../service/handleSuccess");
+const appError = require('../service/appError');
+const handleSuccess = require('../service/handleSuccess');
 
 
 const posts = {
@@ -26,10 +26,10 @@ const posts = {
         handleSuccess(res, newPosts);
         return
       }
-      handleError(404, '檢查欄位是否都有填寫', next);
+      appError(404, '檢查欄位是否都有填寫', next);
     } catch (error) {
       console.log(error.errors);
-      handleError(500,'程式錯誤', next);
+      appError(500,'程式錯誤', next);
     }
   },
   async deleteAllPosts(req, res){
