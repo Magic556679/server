@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
-      name: {
+    name: {
       type: String,
       required: [true, '請輸入您的名字']
     },
@@ -12,6 +12,12 @@ const userSchema = new mongoose.Schema({
       select: false
     },
     photo: String,
+    password:{
+      type: String,
+      required: [true,'請輸入密碼'],
+      minlength: 8,
+      select: false
+    },
   });
 const User = mongoose.model('user', userSchema);
 
