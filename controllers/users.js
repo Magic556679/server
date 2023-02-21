@@ -3,6 +3,7 @@ const User = require('../models/usersModel');
 const appError = require('../service/appError');
 const handleSuccess = require('../service/handleSuccess');
 const handleErrorAsync = require('../service/handleErrorAsync');
+const { generateSendJWT } = require('../service/auth');
 
 const user = {
   async getAllUsers(req, res) {
@@ -18,12 +19,13 @@ const user = {
       if (hasEmail) {
         return next(appError('400', 'E-mail 已被註冊', next))
       };
+      const hashPassword = await bcrypt.hash(password,12)
       const createUser = await User.create({
         name: name,
         email: email,
-        password: password
+        password: hashPassword
       });
-      handleSuccess(res, createUser);
+      generateSendJWT(createUser, res);
   })
 };
 
