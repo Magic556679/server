@@ -33,13 +33,12 @@ const user = {
       return next(appError('400', '欄位不得為空', next));
     };
     const user = await User.findOne({email}).select('+password');
-    console.log(user);
     if (!user) {
-      return next(appError('400', '帳號輸入錯誤', next));
+      return next(appError('400', '帳號或密碼輸入錯誤', next));
     };
     const auth = await bcrypt.compare(password, user.password);
     if (!auth) {
-      return next(appError('400', '密碼錯誤', next))
+      return next(appError('400', '帳號或密碼輸入錯誤', next))
     };
     generateSendJWT(user, res);
   })

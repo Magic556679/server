@@ -16,7 +16,8 @@ const posts = {
       // const id = '639443265053385cd7738da3';
       // const searchId = await User.findById(id).exec()
 
-      if (name && content && tags && type) {
+      // 檢查 type 暫時註解
+      if (name && content && tags) {
         const newPosts = await Posts.create({
           name: name,
           content: content,

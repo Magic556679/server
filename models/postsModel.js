@@ -10,11 +10,11 @@ const postsSchema = new mongoose.Schema({
       required: [true, '貼文標籤 tags 未填寫']
     }
   ],
-  type: {
-    type: String,
-    enum:['group','person'],
-    required: [true, '貼文類型 type 未填寫']
-  },
+  // type: {
+  //   type: String,
+  //   enum:['group','person'],
+  //   required: [true, '貼文類型 type 未填寫']
+  // },
   image: {
     type: String,
     default: ""
