@@ -16,13 +16,13 @@ const posts = {
       // const id = '639443265053385cd7738da3';
       // const searchId = await User.findById(id).exec()
 
-      // 檢查 type 暫時註解
-      if (name && content && tags) {
+      // 檢查 type name tags 暫時註解
+      if (content) {
         const newPosts = await Posts.create({
-          name: name,
+          // name: name,
           content: content,
-          tags: tags,
-          type: type
+          // tags: tags,
+          // type: type
         });
         handleSuccess(res, newPosts);
         return
