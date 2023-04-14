@@ -24,8 +24,11 @@ const isAuth = handleErrorAsync(async(req, res, next) => {
   }).catch((err) => {
     return appError('401', 'invalid token', next)
   });
-  const currentUser = await User.findById(decoded.id);
-  req.currentUser;
+  if (decoded) {
+    const currentUser = await User.findById(decoded.id);
+    // 傳給 router 下個函式使用
+    req.user = currentUser;
+  }
   next();
 });
 
