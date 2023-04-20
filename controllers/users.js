@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 const User = require('../models/usersModel');
 const appError = require('../service/appError');
 const handleSuccess = require('../service/handleSuccess');
@@ -10,9 +11,28 @@ const user = {
     const allUsers = await User.find();
     handleSuccess(res, allUsers);
   },
+  profile: handleErrorAsync(async(req, res, next) => {
+    const id = req.query.id;
+    let profile = null;
+    if (!id){
+      next(appError('400', '查無此用戶', next));
+    };
+    // 驗證 id 是否符合 mongoes ObjectId 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return next(appError('400', '查無此用戶', next));
+    };
+    profile = await User.findById(id);
+    if (!profile) {
+      next(appError('400', '查無此用戶', next));
+    };
+    handleSuccess(res, profile);
+  }),
+  updateProfile: handleErrorAsync(async(req, res, next) => {
+    handleSuccess(res, 'update profile')
+  }),
   register: handleErrorAsync(async(req, res, next) => {
       const { name, email, password } = req.body;
-      if(!name || !email || !password) {
+      if (!name || !email || !password) {
         return next(appError('400', '欄位填寫錯誤', next))
       };
       const hasEmail = await User.findOne({ email })

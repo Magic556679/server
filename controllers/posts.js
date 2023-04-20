@@ -11,7 +11,7 @@ const posts = {
   },
   async createdPosts(req, res, next) {
     try {
-      const { name ,content, tags, type } = req.body
+      const { name ,content, tags, type, image } = req.body
       // user Collections id
       // const id = '639443265053385cd7738da3';
       // const searchId = await User.findById(id).exec()
@@ -22,7 +22,8 @@ const posts = {
           // name: name,
           content: content,
           // tags: tags,
-          // type: type
+          // type: type,
+          image: image
         });
         handleSuccess(res, newPosts);
         return
