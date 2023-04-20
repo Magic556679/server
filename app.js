@@ -15,7 +15,7 @@ require('./connections');
 // app.use(cors());
 app.use(
   cors({
-    credentials: true,
+    credentials: true, // 讓前端能帶 cookies Authorization 等憑證
     origin: 'http://localhost:5173',
   })
 );
