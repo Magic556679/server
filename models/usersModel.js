@@ -10,14 +10,21 @@ const userSchema = new mongoose.Schema({
       unique: true,
       lowercase: true,
       select: false
-    },
-    photo: String,
+    },    
     password:{
       type: String,
       required: [true,'請輸入密碼'],
       minlength: 8,
       select: false
     },
+    photo: {
+      type: String,
+      default: ''
+    },
+    gender: {
+      type: String,
+      default: ''
+    }
   });
 const User = mongoose.model('user', userSchema);
 
