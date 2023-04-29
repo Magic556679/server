@@ -28,7 +28,32 @@ const user = {
     handleSuccess(res, profile);
   }),
   updateProfile: handleErrorAsync(async(req, res, next) => {
-    handleSuccess(res, 'update profile')
+    const id = req.user._id;
+    const { gender, name } = req.body;
+    if (!name) {
+      return  next(appError('400', '姓名不得為空', next))
+    };
+    if(!gender){
+      return  next(appError('400', '性別不得為空', next))
+    };
+    const profile = await User.findOneAndUpdate(id, { gender, name }, {new: true});
+    handleSuccess(res, profile);
+  }),
+  updatePassword: handleErrorAsync(async(req, res, next) => {
+    const id = req.user._id
+    const { password, confirmPassword } = req.body;
+    if (!password) {
+      return next(appError('400', '請輸入密碼', next))
+    };
+    if (!confirmPassword) {
+      return next(appError('400', '請輸入確認密碼', next))
+    };
+    if (password !== confirmPassword) {
+      return next(appError('400', '密碼與確認密碼不一致', next))
+    };
+    const hashPassword = await bcrypt.hash(password,12)
+    const user = await User.findOneAndUpdate(id, { password: hashPassword }, {new: true});
+    generateSendJWT(user, res);
   }),
   register: handleErrorAsync(async(req, res, next) => {
       const { name, email, password } = req.body;
