@@ -11,24 +11,10 @@ const posts = {
   },
   async createdPosts(req, res, next) {
     try {
-      const { name ,content, tags, type, image } = req.body
-      // user Collections id
-      // const id = '639443265053385cd7738da3';
-      // const searchId = await User.findById(id).exec()
-
-      // 檢查 type name tags 暫時註解
-      if (content) {
-        const newPosts = await Posts.create({
-          // name: name,
-          content: content,
-          // tags: tags,
-          // type: type,
-          image: image
-        });
-        handleSuccess(res, newPosts);
-        return
+      const { content, image, user } = req.body
+      if (!content) {
+        return next(appError(404, '請填寫評論', next))
       }
-      appError(404, '檢查欄位是否都有填寫', next);
     } catch (error) {
       console.log(error.errors);
       appError(500,'程式錯誤', next);
