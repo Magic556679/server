@@ -6,5 +6,7 @@ const { isAuth } = require('../service/auth');
 router.get('/', PostsControllers.getPosts);
 router.post('/', isAuth, PostsControllers.createdPosts);
 router.delete('/', PostsControllers.deleteAllPosts);
+router.post('/:postId/like', isAuth, PostsControllers.addLike);
+router.delete('/:postId/like', isAuth, PostsControllers.unLike);
 
 module.exports = router;
