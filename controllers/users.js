@@ -29,14 +29,14 @@ const user = {
   }),
   updateProfile: handleErrorAsync(async(req, res, next) => {
     const id = req.user._id;
-    const { gender, name } = req.body;
+    const { gender, name,  photo} = req.body;
     if (!name) {
       return  next(appError('400', '姓名不得為空', next))
     };
     if(!gender){
       return  next(appError('400', '性別不得為空', next))
     };
-    const profile = await User.findOneAndUpdate(id, { gender, name }, {new: true});
+    const profile = await User.findOneAndUpdate(id, { gender, name, photo}, {new: true});
     handleSuccess(res, profile);
   }),
   updatePassword: handleErrorAsync(async(req, res, next) => {
