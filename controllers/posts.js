@@ -3,11 +3,23 @@ const User = require('../models/usersModel');
 const appError = require('../service/appError');
 const handleSuccess = require('../service/handleSuccess');
 
-
 const posts = {
   async getPosts(req, res) {
     const allPosts = await Posts.find();
     handleSuccess(res, allPosts);
+  },
+  async getUserPosts(req, res, next) {
+    try {
+      const postId = req.params.postId;
+      if (!postId) {
+        appError(404, '請提供id', next);
+      }
+      const userPosts = await Posts.find({ user: postId });
+      handleSuccess(res, userPosts);
+    } catch (error) {
+      console.log(error)
+      appError(500,'程式錯誤', next);
+    }
   },
   async createdPosts(req, res, next) {
     try {
