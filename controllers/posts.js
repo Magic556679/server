@@ -1,5 +1,6 @@
 const Posts = require('../models/postsModel');
 const User = require('../models/usersModel');
+const Comment = require('../models/commentsModel');
 const appError = require('../service/appError');
 const handleSuccess = require('../service/handleSuccess');
 
@@ -51,6 +52,22 @@ const posts = {
         user: searchId
       });
       handleSuccess(res, newPosts);
+    } catch (error) {
+      console.log(error.errors);
+      appError(500,'程式錯誤', next);
+    }
+  },
+  async addComment(req, res, next) {
+    try {
+      const postId = req.params.postId;
+      const { comment, user } = req.body;
+      const newComment = await Comment.create({
+        comment: comment,
+        user: user,
+        post: postId
+      });
+
+      handleSuccess(res, newComment);
     } catch (error) {
       console.log(error.errors);
       appError(500,'程式錯誤', next);
