@@ -8,6 +8,19 @@ const posts = {
     const allPosts = await Posts.find();
     handleSuccess(res, allPosts);
   },
+  async getPost(req, res, next) {
+    try {
+      const postId = req.params.postId;
+      if (!postId) {
+        appError(404, '請提供id', next);
+      }
+      const userPosts = await Posts.findById(postId);
+      handleSuccess(res, userPosts);
+    } catch (error) {
+      console.log(error)
+      appError(500,'程式錯誤', next);
+    }
+  },
   async getUserPosts(req, res, next) {
     try {
       const postId = req.params.postId;
