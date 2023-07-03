@@ -15,18 +15,26 @@ const postsSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: 'user',
     required: [true, 'user 未填寫'],
   },
   likes: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User'
-  },
-  comments:{
-    type: Number,
-    default: 0
-  },
+    ref: 'user'
+  }
+},
+{
+  versionKey: false,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 });
+
+postsSchema.virtual('comments', {
+  ref: 'Comment',
+  foreignField: 'post',
+  localField: '_id'
+});
+
 const posts = mongoose.model(
   'posts',
   postsSchema
