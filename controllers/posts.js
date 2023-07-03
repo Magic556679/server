@@ -5,9 +5,23 @@ const appError = require('../service/appError');
 const handleSuccess = require('../service/handleSuccess');
 
 const posts = {
-  async getPosts(req, res) {
-    const allPosts = await Posts.find();
-    handleSuccess(res, allPosts);
+  async getPosts(req, res, next) {
+    try {
+      const q = req.query.q !== undefined ? {"content": new RegExp(req.query.q)} : {};
+
+      const allPosts = await Posts.find(q).populate({
+        path: 'user',
+        select: 'name photo'
+      }).populate({
+        path: 'comments',
+        select: 'comment user'
+      });
+
+      handleSuccess(res, allPosts);
+    } catch (error) {
+      console.log(error)
+      appError(500,'程式錯誤', next);
+    }
   },
   async getPost(req, res, next) {
     try {
