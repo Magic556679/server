@@ -11,7 +11,7 @@ const isAuth = handleErrorAsync(async(req, res, next) => {
     token = req.headers.authorization.split(' ')[1];
   };
   if (!token) {
-    return appError('401', '尚未登入', next);
+    return appError(401, '尚未登入', next);
   };
   const decoded = await new Promise((resolve,reject)=>{
     jwt.verify(token,process.env.JWT_SECRET,(err,payload)=>{
@@ -22,7 +22,7 @@ const isAuth = handleErrorAsync(async(req, res, next) => {
       }
     })
   }).catch((err) => {
-    return appError('401', 'invalid token', next)
+    return appError(401, 'invalid token', next)
   });
   if (decoded) {
     const currentUser = await User.findById(decoded.id);
