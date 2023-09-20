@@ -18,10 +18,12 @@ const postsSchema = new mongoose.Schema({
     ref: 'user',
     required: [true, 'user 未填寫'],
   },
-  likes: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'user'
-  }
+  likes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'user'
+    }
+  ]
 },
 {
   versionKey: false,
