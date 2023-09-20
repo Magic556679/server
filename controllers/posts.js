@@ -14,8 +14,8 @@ const posts = {
         select: 'name photo'
       }).populate({
         path: 'comments',
-        select: 'comment user'
-      });
+        select: 'comment user createdAt'
+      }).select('image content user likes createAt');
 
       handleSuccess(res, allPosts);
     } catch (error) {
@@ -100,7 +100,8 @@ const posts = {
       }
       const postLike =  await Posts.findOneAndUpdate(
         { _id: postId},
-        { $addToSet: { likes: req.user.id } }
+        { $addToSet: { likes: req.user.id } },
+        { new: true }
       );
       if (!postLike) {
         return next(appError(404, '無此欄位', next))
@@ -119,7 +120,8 @@ const posts = {
       }
       const postLike =  await Posts.findOneAndUpdate(
         { _id: postId},
-        { $pull: { likes: req.user.id } }
+        { $pull: { likes: req.user.id } },
+        { new: true }
       );
       if (!postLike) {
         return next(appError(404, '無此欄位', next))
