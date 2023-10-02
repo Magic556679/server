@@ -12,13 +12,7 @@ const uploadRouter = require('./routes/upload');
 var app = express();
 require('./connections');
 
-// app.use(cors());
-app.use(
-  cors({
-    credentials: true, // 讓前端能帶 cookies Authorization 等憑證
-    origin: 'http://localhost:5173',
-  })
-);
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

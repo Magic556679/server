@@ -7,9 +7,9 @@ const handleSuccess = require('../service/handleSuccess');
 const posts = {
   async getPosts(req, res, next) {
     try {
-      const q = req.query.q !== undefined ? {"content": new RegExp(req.query.q)} : {};
+      const search = req.query.search !== undefined ? {"content": new RegExp(req.query.search)} : {};
 
-      const allPosts = await Posts.find(q).populate({
+      const allPosts = await Posts.find(search).populate({
         path: 'user',
         select: 'name photo'
       }).populate({
