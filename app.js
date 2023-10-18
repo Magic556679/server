@@ -20,12 +20,27 @@ require('./connections');
 //     origin: ['https://magic556679.github.io', 'https://magic556679.github.io/BlogWall/#/', 'https://magic556679.github.io/BlogWall','https://tonyli.website'],
 //   })
 // );
-app.use(cors({
-  "origin": ["https://magic556679.github.io", "https://magic556679.github.io/BlogWall/#/", "https://magic556679.github.io/BlogWall", "https://tonyli.website"],
-  'methods': "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 204
-}));
+// app.use(cors({
+//   "origin": ["https://magic556679.github.io", "https://magic556679.github.io/BlogWall/#/", "https://magic556679.github.io/BlogWall", "https://tonyli.website"],
+//   'methods': "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   "preflightContinue": false,
+//   "optionsSuccessStatus": 204
+// }));
+
+const corsOptions = {
+  origin: [
+    'https://magic556679.github.io',
+    'https://magic556679.github.io/BlogWall/#/',
+    'https://magic556679.github.io/BlogWall',
+    'https://tonyli.website',
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  preflightContinue: false,
+};
+
+app.use(cors(corsOptions));
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
