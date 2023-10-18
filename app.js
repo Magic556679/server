@@ -21,8 +21,8 @@ require('./connections');
 //   })
 // );
 app.use(cors({
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "origin": ["https://magic556679.github.io", "https://magic556679.github.io/BlogWall/#/", "https://magic556679.github.io/BlogWall", "https://tonyli.website"],
+  'methods': "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }));
