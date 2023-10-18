@@ -16,7 +16,7 @@ require('./connections');
 app.use(
   cors({
     credentials: true,
-    origin: 'https://magic556679.github.io/BlogWall',
+    origin: 'https://magic556679.github.io',
   })
 );
 app.use(logger('dev'));
