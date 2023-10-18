@@ -16,7 +16,7 @@ require('./connections');
 app.use(
   cors({
     credentials: true,
-    origin: 'https://tonyli.website',
+    origin: 'https://magic556679.github.io/BlogWall',
   })
 );
 app.use(logger('dev'));
