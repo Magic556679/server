@@ -33,7 +33,8 @@ const corsOptions = {
     'https://magic556679.github.io/BlogWall/#/',
     'https://magic556679.github.io/BlogWall',
     'https://tonyli.website',
-    'http://localhost:8080'
+    'http://localhost:8080',
+    'http://52.195.185.50:8443'
   ],
   // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   // preflightContinue: false,
