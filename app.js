@@ -1,3 +1,4 @@
+var history = require('connect-history-api-fallback');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -54,6 +55,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/upload', uploadRouter);
+app.use(history());
 
 // 自己設定的 err 錯誤 
 const resErrorProd = (err, res) => {
