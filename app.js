@@ -13,21 +13,6 @@ const uploadRouter = require('./routes/upload');
 var app = express();
 require('./connections');
 
-// app.use(cors());
-// app.use(
-//   cors({
-//     credentials: true,
-//     // origin: 'https://magic556679.github.io',
-//     origin: ['https://magic556679.github.io', 'https://magic556679.github.io/BlogWall/#/', 'https://magic556679.github.io/BlogWall','https://tonyli.website'],
-//   })
-// );
-// app.use(cors({
-//   "origin": ["https://magic556679.github.io", "https://magic556679.github.io/BlogWall/#/", "https://magic556679.github.io/BlogWall", "https://tonyli.website"],
-//   'methods': "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   "preflightContinue": false,
-//   "optionsSuccessStatus": 204
-// }));
-
 const corsOptions = {
   origin: [
     'https://magic556679.github.io',
@@ -37,8 +22,6 @@ const corsOptions = {
     'http://localhost:8080',
     'http://52.195.185.50:8443'
   ],
-  // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  // preflightContinue: false,
 };
 
 app.use(cors(corsOptions));
