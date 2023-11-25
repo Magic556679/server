@@ -45,7 +45,9 @@ app.use(history({
         return '/magic556679.github.io/BlogWall/' + context.parsedUrl.pathname;
       }
     }
-  ]  
+  ],
+  verbose: true,
+  disableDotRule: true   
 }));
 app.use(express.static(path.join(__dirname, 'docs')));
 // app.use('/assets', express.static(path.join(__dirname, 'docs')))
