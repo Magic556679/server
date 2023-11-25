@@ -37,6 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/upload', uploadRouter);
+// app.use(history());
 app.use(history({
   rewrites: [
     {
@@ -49,9 +50,8 @@ app.use(history({
   verbose: true,
   disableDotRule: true   
 }));
-app.use(express.static(path.join(__dirname, 'docs')));
-console.log('123')
-// app.use('/assets', express.static(path.join(__dirname, 'docs')))
+// app.use(express.static(path.join(__dirname, 'docs')));
+app.use('/assets', express.static(path.join(__dirname, 'docs')))
 
 // 自己設定的 err 錯誤 
 const resErrorProd = (err, res) => {
