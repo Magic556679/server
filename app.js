@@ -37,8 +37,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/upload', uploadRouter);
-app.use(history());
-app.use(express.static('./docs'))
+app.use(history({
+  index: '/index.html'
+}));
+// app.use(express.static('./docs'))
 // app.use(history({
 //   rewrites: [
 //     {
