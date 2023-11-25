@@ -37,21 +37,22 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/upload', uploadRouter);
-// app.use(history());
-app.use(history({
-  rewrites: [
-    {
-      from: /^\/assets\/.*$/,
-      to: function(context) {
-        return '/magic556679.github.io/BlogWall/' + context.parsedUrl.pathname;
-      }
-    }
-  ],
-  verbose: true,
-  disableDotRule: true   
-}));
+app.use(history());
+app.use(express.static('./docs'))
+// app.use(history({
+//   rewrites: [
+//     {
+//       from: /^\/assets\/.*$/,
+//       to: function(context) {
+//         return '/magic556679.github.io/BlogWall/' + context.parsedUrl.pathname;
+//       }
+//     }
+//   ],
+//   verbose: true,
+//   disableDotRule: true   
+// }));
 // app.use(express.static(path.join(__dirname, 'docs')));
-app.use('/assets', express.static(path.join(__dirname, 'docs')))
+// app.use('/assets', express.static(path.join(__dirname, 'docs')))
 
 // 自己設定的 err 錯誤 
 const resErrorProd = (err, res) => {
