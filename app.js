@@ -50,6 +50,7 @@ app.use(history({
   disableDotRule: true   
 }));
 app.use(express.static(path.join(__dirname, 'docs')));
+console.log('123')
 // app.use('/assets', express.static(path.join(__dirname, 'docs')))
 
 // 自己設定的 err 錯誤 
