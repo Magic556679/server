@@ -32,13 +32,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/upload', uploadRouter);
 app.use(history());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 自己設定的 err 錯誤 
 const resErrorProd = (err, res) => {
