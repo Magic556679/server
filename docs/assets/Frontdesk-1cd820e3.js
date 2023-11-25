@@ -1,0 +1,1 @@
+import{r as n,o as s,c as a,a as _}from"./index-c99818d6.js";const m=(o,t)=>{const e=o.__vccOpts||o;for(const[r,c]of t)e[r]=c;return e},p={},f={class:"sm:w-[860px] mx-auto"};function i(o,t){const e=n("router-view");return s(),a("main",f,[_(e)])}const u=m(p,[["render",i]]);export{u as default};
