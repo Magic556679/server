@@ -37,8 +37,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/upload', uploadRouter);
-app.use(history());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(history());
+// app.use(express.static(path.join(__dirname, 'public')));
 
 
 // 自己設定的 err 錯誤 
